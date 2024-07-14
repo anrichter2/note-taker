@@ -1,17 +1,22 @@
 [
     {
+        "title": "test",
+        "text": "a test note",
+        "id": "ace870d1-7e69-4175-a1bc-7e372c4781e7"
+    },
+    {
         "title": "Dinner",
-        "text": "Make dinner",
-        "note_id": "bacc5242-0255-4ca9-9888-ca036aa6126d"
+        "text": "Find a recipe for tonight",
+        "id": "1eacb698-ae1c-4929-94e3-6b27c5eefff0"
     },
     {
         "title": "Pay Rent",
-        "text": "Tonight",
-        "note_id": "45ea8ac6-f33a-41dc-8683-4d41f368c7ff"
+        "text": "Pay my rent by tomorrow",
+        "id": "16513dcd-bc21-43e8-aca0-1edc235802b0"
     },
     {
-        "title": "Go for a run",
-        "text": "got to get my cardio in.",
-        "note_id": "fa160b71-c6b8-42c9-83d1-93e2507eca2d"
+        "title": "Go for a Run",
+        "text": "Got to improve my cardio",
+        "id": "73f2782c-bea5-475b-be67-89a7e0dde3f2"
     }
 ]

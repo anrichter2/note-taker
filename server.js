@@ -6,11 +6,13 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+// Middleware for parsing JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
+// GET routes for the homepage and notes page
 app.get('/', (req, res) => 
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
@@ -19,9 +21,9 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
+// GET and POST requests for getting and submitting notes for the notes page
 app.get('/api/notes', (req, res) => 
     fs.readFile('./db/db.json', 'utf-8', (err, noteData) => {
-        // console.log('noteData', noteData);
         return res.json(JSON.parse(noteData));
     })
 );
@@ -33,7 +35,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuidv4(),
+            id: uuidv4(),
         };
     
         fs.readFile('./db/db.json', 'utf-8', (err, data) => {
@@ -58,6 +60,7 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
+// Wildcard route to take you back to the homepage
 app.get('*', (req, res) => 
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
