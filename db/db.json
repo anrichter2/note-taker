@@ -1,10 +1,5 @@
 [
     {
-        "title": "test",
-        "text": "a test note",
-        "id": "ace870d1-7e69-4175-a1bc-7e372c4781e7"
-    },
-    {
         "title": "Dinner",
         "text": "Find a recipe for tonight",
         "id": "1eacb698-ae1c-4929-94e3-6b27c5eefff0"
@@ -18,5 +13,10 @@
         "title": "Go for a Run",
         "text": "Got to improve my cardio",
         "id": "73f2782c-bea5-475b-be67-89a7e0dde3f2"
+    },
+    {
+        "title": "Test",
+        "text": "A test note",
+        "id": "76a57c5f-3da2-410c-b90e-b1db7f824b4a"
     }
 ]

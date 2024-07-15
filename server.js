@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const noteData = require('./db/db.json')
 const { v4: uuidv4 } = require('uuid')
 const PORT = process.env.PORT || 3001;
 
@@ -59,6 +60,26 @@ app.post('/api/notes', (req, res) => {
         res.json('Error in posting new note');
     }
 });
+
+app.delete('/api/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+
+    for (let i = 0; i < noteData.length; i++) {
+        if (noteId === noteData[i].id) {
+            fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    const editData = JSON.parse(data);
+                    editData.splice(i, 1);
+                    fs.writeFile('./db/db.json', JSON.stringify(editData, null, 4), (err) =>
+                    err ? console.error(err): console.log('Note deleted from ./db/db.json'))
+                }
+            });
+        }
+    }
+    return res.json('No match found')
+})
 
 // Wildcard route to take you back to the homepage
 app.get('*', (req, res) => 
