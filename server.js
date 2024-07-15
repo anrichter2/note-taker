@@ -22,7 +22,7 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// GET and POST requests for getting and submitting notes for the notes page
+// GET and POST api request routes for getting and submitting notes for the notes page
 app.get('/api/notes', (req, res) => 
     fs.readFile('./db/db.json', 'utf-8', (err, noteData) => {
         return res.json(JSON.parse(noteData));
@@ -32,6 +32,7 @@ app.get('/api/notes', (req, res) =>
 app.post('/api/notes', (req, res) => {
     const {title, text} = req.body;
 
+    // Creates a new note object from the req and gives it a random id
     if (title && text) {
         const newNote = {
             title,
@@ -39,6 +40,7 @@ app.post('/api/notes', (req, res) => {
             id: uuidv4(),
         };
     
+        // Reads the db.json file then pushes the new note object into the array of db.json
         fs.readFile('./db/db.json', 'utf-8', (err, data) => {
             if (err) {
                 console.log(err);
@@ -61,10 +63,13 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
+// DELETE request api route for deleting a note from the database of notes
 app.delete('/api/notes/:id', (req, res) => {
     const noteId = req.params.id;
 
+    // Goes through the array of notes looking for a matching id
     for (let i = 0; i < noteData.length; i++) {
+        // If an id matches it reads the file db.json file and then splices the object with the matching id out of the db array
         if (noteId === noteData[i].id) {
             fs.readFile('./db/db.json', 'utf-8', (err, data) => {
                 if (err) {
